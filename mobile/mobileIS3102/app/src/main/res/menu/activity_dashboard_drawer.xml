@@ -23,9 +23,9 @@
             android:icon="@drawable/finance"
             android:title="Payment" />-->
         <item
-            android:id="@+id/first_frag"
+            android:id="@+id/ticketingList"
             android:icon="@drawable/chat"
-            android:title="table testing" />
+            android:title="My Tickets" />
         <item
             android:id="@+id/inFlightOrderingFrag"
             android:icon="@drawable/chat"
@@ -42,5 +42,9 @@
             android:id="@+id/qr_scanner"
             android:icon="@drawable/beacons"
             android:title="SCAN FOR DISCOUNT USING QR CODE" />
+        <item
+            android:id="@+id/first_frag"
+            android:icon="@drawable/beacons"
+            android:title="first_frag" />
     </group>
 </menu>

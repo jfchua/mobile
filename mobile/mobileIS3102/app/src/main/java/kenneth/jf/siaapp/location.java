@@ -51,7 +51,7 @@ public class location extends Fragment {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Retrieving the locations...");
         progressDialog.show();
-        new viewAlllocations().execute();
+        new viewLocations().execute();
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -76,7 +76,7 @@ public class location extends Fragment {
 
     MyCustomAdapter dataAdapter = null;
 
-    private class viewAlllocations extends AsyncTask<Void, Void, String> {
+    private class viewLocations extends AsyncTask<Void, Void, String> {
 
 
         protected String doInBackground(Void... params) {
@@ -156,7 +156,7 @@ public class location extends Fragment {
 
         private class ViewHolder {
             TextView code;
-            CheckBox name;
+            //CheckBox name;
             Button locationInfo;
             Button locationList;
         }
@@ -175,12 +175,12 @@ public class location extends Fragment {
 
                 holder = new ViewHolder();
                 holder.code = (TextView) convertView.findViewById(R.id.codeLocation);
-                holder.name = (CheckBox) convertView.findViewById(R.id.checkBoxlocation);
-                holder.locationInfo = (Button) convertView.findViewById(R.id.viewLocationInfo);
-                holder.locationList = (Button)convertView.findViewById(R.id.toLocationList);
+                //holder.name = (CheckBox) convertView.findViewById(R.id.checkBoxlocation);
+                holder.locationInfo = (Button) convertView.findViewById(R.id.locationInfo);
+
                 convertView.setTag(holder);
 
-                holder.name.setOnClickListener( new View.OnClickListener() {
+               /* holder.name.setOnClickListener( new View.OnClickListener() {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v ;
                         LocationListObject location = (LocationListObject) cb.getTag();
@@ -193,7 +193,7 @@ public class location extends Fragment {
                         //retrieve location Details From Backend
 
                     }
-                });
+                });*/
 
 
             }
@@ -202,9 +202,9 @@ public class location extends Fragment {
             }
 
             LocationListObject location = locationList.get(position);
-            holder.name.setText(location.getName());
+            holder.code.setText(location.getName());
             //holder.name.setChecked(location.isSelected());
-            holder.name.setTag(location);
+            holder.code.setTag(location);
             holder.locationInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -220,7 +220,7 @@ public class location extends Fragment {
 
                 }
             });
-            holder.locationList.setOnClickListener(new View.OnClickListener() {
+            /*holder.locationList.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Button cb = (Button) view ;
@@ -230,12 +230,12 @@ public class location extends Fragment {
                     Intent intent = new Intent(getActivity(),  dashboard.class);
                     intent.putExtra("key2", "location");
                     intent.putExtra("locationId", String.valueOf(pos));
-                    System.out.println("FROM POSITION in locationListing: " + pos);
+                    System.out.println("FROM POSITION in location Listing: " + pos);
                     startActivity(intent);
 
 
                 }
-            });
+            });*/
             return convertView;
 
         }

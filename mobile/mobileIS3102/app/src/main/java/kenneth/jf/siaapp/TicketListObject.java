@@ -27,6 +27,14 @@ public class TicketListObject {
     @JsonProperty("price")
     private double price;
 
+    public int getNumTix() {
+        return numTix;
+    }
+
+    public void setNumTix(int numTix) {
+        this.numTix = numTix;
+    }
+
     @JsonProperty("numOfTickets")
     private int numTix;
 

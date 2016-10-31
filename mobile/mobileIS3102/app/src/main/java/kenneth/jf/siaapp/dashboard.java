@@ -89,6 +89,9 @@ public class dashboard extends AppCompatActivity
             } else if (extras.getString("key2").equals("showQRcode")) {
                 //from paymentSummary
                 fragmentManager.beginTransaction().replace(R.id.contentFrame, new test() ).commit();
+            } else if (extras.getString("key2").equals("goToEventList")) {
+                //directing to event list
+                fragmentManager.beginTransaction().replace(R.id.contentFrame, new eventlisting() ).commit();
             } else {
                 //this key is inside confirmationActivity
                 String value = extras.getString("key");
@@ -261,6 +264,10 @@ public class dashboard extends AppCompatActivity
 /*        } else if (id == R.id.ticketing) {
             fragmentManager.beginTransaction().replace(R.id.contentFrame, new PayPalFrag()).commit();
             Toast.makeText(this, "Payment with PayPal", Toast.LENGTH_LONG).show();*/
+        } else if (id == R.id.ticketingList) {
+            //display locations
+            fragmentManager.beginTransaction().replace(R.id.contentFrame, new purchasedTixList()).commit();
+            Toast.makeText(this, "Ticketing List", Toast.LENGTH_LONG).show();
         } else if (id == R.id.locationlisting) {
             //display locations
             fragmentManager.beginTransaction().replace(R.id.contentFrame, new location()).commit();

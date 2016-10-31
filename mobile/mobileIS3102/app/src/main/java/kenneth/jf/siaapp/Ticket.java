@@ -12,6 +12,16 @@ public class Ticket implements Parcelable
     int index = 0;
     boolean selected = false;
 
+    public int getNumTix() {
+        return numTix;
+    }
+
+    public void setNumTix(int numTix) {
+        this.numTix = numTix;
+    }
+
+    int numTix;
+
     public Ticket(){
         super();
     }

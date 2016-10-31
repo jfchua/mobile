@@ -87,7 +87,7 @@ public class login extends AppCompatActivity {
             ConnectionInformation.getInstance().setRestTemplate(restTemplate2);
             //SET ADDRESS OF THE SERVER
             //ConnectionInformation.getInstance().setUrl("192.168.43.244:8443");
-            ConnectionInformation.getInstance().setUrl("192.168.1.170:8443");
+            ConnectionInformation.getInstance().setUrl("192.168.1.9:8443");
             restTemplate = restTemplate2;
         }
         catch ( Exception e){
@@ -167,7 +167,7 @@ public class login extends AppCompatActivity {
                         // onLoginFailed();
                         progressDialog.dismiss();
                     }
-                }, 1700);
+                }, 2500);
     }
 
 
