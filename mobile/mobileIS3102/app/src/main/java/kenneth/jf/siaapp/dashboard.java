@@ -256,15 +256,18 @@ public class dashboard extends AppCompatActivity
             Toast.makeText(this, "Back Home", Toast.LENGTH_LONG).show();
         } else if (id == R.id.eventlisting) {
             fragmentManager.beginTransaction().replace(R.id.contentFrame, new eventlisting()).commit();
-            Toast.makeText(this, "Event Listing", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Event List", Toast.LENGTH_LONG).show();
 
-        } else if (id == R.id.ticketing) {
+/*        } else if (id == R.id.ticketing) {
             fragmentManager.beginTransaction().replace(R.id.contentFrame, new PayPalFrag()).commit();
-            Toast.makeText(this, "Payment with PayPal", Toast.LENGTH_LONG).show();
-
-        } else if (id == R.id.payment) {
+            Toast.makeText(this, "Payment with PayPal", Toast.LENGTH_LONG).show();*/
+        } else if (id == R.id.locationlisting) {
+            //display locations
+            fragmentManager.beginTransaction().replace(R.id.contentFrame, new location()).commit();
+            Toast.makeText(this, "Location List", Toast.LENGTH_LONG).show();
+/*        } else if (id == R.id.payment) {
             fragmentManager.beginTransaction().replace(R.id.contentFrame, new SupportWalletFragment()).commit();
-            Toast.makeText(this, "Payment", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Payment", Toast.LENGTH_LONG).show();*/
         } else if (id == R.id.qr_scanner) {
             fragmentManager.beginTransaction().replace(R.id.contentFrame, new QR_Scanner()).commit();
             Toast.makeText(this, "Scan For Discount Using QR Scanner", Toast.LENGTH_LONG).show();

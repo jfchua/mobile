@@ -64,7 +64,7 @@ public class eventlisting extends Fragment {
                         if ( ConnectionInformation.getInstance().getAuthenticated() ){
                             Log.d("TAG","After authenticated");
                             displayListView();
-                            checkButtonClick();
+                            //checkButtonClick(); //for checkbox
                         }
                         else{
                             Log.d("TAG","After NOT authenticated");
@@ -164,7 +164,7 @@ public class eventlisting extends Fragment {
 
         private class ViewHolder {
             TextView code;
-            CheckBox name;
+           // CheckBox name;
             Button eventInfo;
             Button ticketList;
         }
@@ -183,12 +183,12 @@ public class eventlisting extends Fragment {
 
                 holder = new ViewHolder();
                 holder.code = (TextView) convertView.findViewById(R.id.code);
-                holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
+               // holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 holder.eventInfo = (Button) convertView.findViewById(R.id.viewEventInfo);
                 holder.ticketList = (Button)convertView.findViewById(R.id.toTicketList);
                 convertView.setTag(holder);
 
-                holder.name.setOnClickListener( new View.OnClickListener() {
+              /*  holder.name.setOnClickListener( new View.OnClickListener() {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v ;
                         Event Event = (Event) cb.getTag();
@@ -201,7 +201,7 @@ public class eventlisting extends Fragment {
                         //retrieve Event Details From Backend
 
                     }
-                });
+                });*/
 
 
             }
@@ -210,9 +210,9 @@ public class eventlisting extends Fragment {
             }
 
             Event Event = EventList.get(position);
-            holder.name.setText(Event.getName());
-            holder.name.setChecked(Event.isSelected());
-            holder.name.setTag(Event);
+            holder.code.setText(Event.getName());
+            //holder.code.setChecked(Event.isSelected());
+            holder.code.setTag(Event);
             holder.eventInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -249,7 +249,7 @@ public class eventlisting extends Fragment {
         }
     }
 
-    private void checkButtonClick() {
+    /*private void checkButtonClick() {
 
         Button myButton = (Button) myView.findViewById(R.id.findSelected);
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -274,5 +274,5 @@ public class eventlisting extends Fragment {
             }
         });
 
-    }
+    }*/
 }

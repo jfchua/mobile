@@ -11,13 +11,17 @@
             android:icon="@drawable/folder"
             android:title="EventListing" />
         <item
+            android:id="@+id/locationlisting"
+            android:icon="@drawable/folder"
+            android:title="Locations" />
+  <!--      <item
             android:id="@+id/ticketing"
             android:icon="@drawable/finance"
-            android:title="My Tickets" />
-        <item
+            android:title="My Tickets" />-->
+  <!--      <item
             android:id="@+id/payment"
             android:icon="@drawable/finance"
-            android:title="Payment" />
+            android:title="Payment" />-->
         <item
             android:id="@+id/first_frag"
             android:icon="@drawable/chat"

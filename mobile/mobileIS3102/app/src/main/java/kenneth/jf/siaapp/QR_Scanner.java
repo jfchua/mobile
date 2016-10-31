@@ -12,12 +12,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import kenneth.jf.siaapp.R;
 
 import static android.app.Activity.RESULT_OK;
-import static kenneth.jf.siaapp.R.layout.event;
+
+import static kenneth.jf.siaapp.R.layout.qr_scanning;
 
 public class QR_Scanner extends Fragment {
     View myView;
@@ -25,9 +27,25 @@ public class QR_Scanner extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(event,container,false);
-        scanBar(myView);
-        scanQR(myView);
+        myView = inflater.inflate(qr_scanning,container,false);
+        Button scanner = (Button)myView.findViewById(R.id.scanner);
+        scanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scanQR(myView);
+            }
+        });
+
+        Button scanner1 = (Button)myView.findViewById(R.id.scanner2);
+        scanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scanBar(myView);
+            }
+        });
+
+
+
         return myView;
     }
 

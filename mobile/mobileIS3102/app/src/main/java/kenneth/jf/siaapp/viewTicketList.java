@@ -83,6 +83,12 @@ public class viewTicketList extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+
+                //NEED TO CHECK IF TICKETSSSSSSS are available
+
+
+
                 double sum = 0.0;
                 Spinner spin = (Spinner) myView.findViewById(R.id.spinnerTicketList);
                 ArrayList<String> spinList = new ArrayList<>();
@@ -321,13 +327,7 @@ for (TicketListObject t : responseEntity.getBody()){
                 }
                 Toast.makeText(getActivity(),
                         responseText, Toast.LENGTH_LONG).show();
-
             }
         });
-
     }
-
-
-
-
 }

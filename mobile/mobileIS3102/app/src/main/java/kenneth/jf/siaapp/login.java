@@ -272,7 +272,7 @@ public class login extends AppCompatActivity {
                 String stoken = "";
                 String xtoken = "";
                 if ( responseEntity.getStatusCode().equals(HttpStatus.OK)){
-                    Log.d("TAGRESPONSE", responseEntity.getHeaders().get("Set-Cookie").toString());
+                    //Log.d("TAGRESPONSE", responseEntity.getHeaders().get("Set-Cookie").toString());
                     for ( String s : responseEntity.getHeaders().get("Set-Cookie")){
                         Log.d("STRT IS",s);
                         if ( !s.contains("XSRF-TOKEN=;") && !s.contains("JSESSION")){
