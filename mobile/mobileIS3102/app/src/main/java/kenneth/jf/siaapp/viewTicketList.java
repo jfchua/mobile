@@ -102,7 +102,7 @@ public class viewTicketList extends Fragment {
                 intent2.putParcelableArrayListExtra("ticketList", TicketList);
                 intent2.putStringArrayListExtra("spinList",spinList);
                 intent2.putExtra("num", TicketList.size());
-                Log.d("another fuck",intent2.toString());
+
                 startActivity(intent2);
 
 

@@ -45,15 +45,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
-
-import static android.R.attr.name;
-import static android.R.attr.password;
-import static kenneth.jf.siaapp.R.attr.homeLayout;
 
 
 public class dashboard extends AppCompatActivity
@@ -94,6 +86,9 @@ public class dashboard extends AppCompatActivity
             } else if (extras.getString("key2").equals("purchasedTix")) {
                 //from paymentSummary
                 fragmentManager.beginTransaction().replace(R.id.contentFrame, new purchasedTixList() ).commit();
+            } else if (extras.getString("key2").equals("showQRcode")) {
+                //from paymentSummary
+                fragmentManager.beginTransaction().replace(R.id.contentFrame, new test() ).commit();
             } else {
                 //this key is inside confirmationActivity
                 String value = extras.getString("key");

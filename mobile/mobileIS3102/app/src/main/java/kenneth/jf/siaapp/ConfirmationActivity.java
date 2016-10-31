@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
+
+//confirm payment
 public class ConfirmationActivity extends AppCompatActivity {
 
     ArrayList<String> numTixList;

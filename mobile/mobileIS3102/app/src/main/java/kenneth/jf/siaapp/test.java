@@ -1,6 +1,7 @@
 package kenneth.jf.siaapp;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -19,10 +20,12 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TableRow.LayoutParams;
+import android.content.Intent;
 
 import com.google.zxing.BarcodeFormat;
 
 import static android.content.Context.WINDOW_SERVICE;
+import static android.content.Intent.getIntent;
 
 /**
  * Created by User on 21/10/2016.
@@ -33,21 +36,50 @@ public class test extends Fragment implements View.OnClickListener {
     TableLayout tl;
     TableRow tr;
     TextView companyTV,valueTV,testTV;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        myView = inflater.inflate(R.layout.test,container,false);  tl = (TableLayout) myView.findViewById(R.id.maintable);
+        myView = inflater.inflate(R.layout.test,container,false);
+        //tl = (TableLayout) myView.findViewById(R.id.maintable);
+
         qrInput = (TextView) myView.findViewById(R.id.qrInput);
-        dashboard qr = (dashboard)getActivity();
-        String qrcode = qr.getResult();
+        String qrcode = getActivity().getIntent().getStringExtra("qrcode");
         qrInput.setText(qrcode);
-        Button button1 = (Button) myView.findViewById(R.id.button1);
-        button1.setOnClickListener(this);
+       /* Button button1 = (Button) myView.findViewById(R.id.button1);
+        button1.setOnClickListener(this);*/
 
-        addHeaders();
-        addData();
+        //addHeaders();
+        //addData();
 
+        String qrInputText = qrInput.getText().toString();
+        Log.v(LOG_TAG, qrInputText);
+
+        //Find screen size
+        WindowManager manager = (WindowManager) getActivity().getSystemService(WINDOW_SERVICE);
+        Display display = manager.getDefaultDisplay();
+        Point point = new Point();
+        display.getSize(point);
+        int width = point.x;
+        int height = point.y;
+        int smallerDimension = width < height ? width : height;
+        smallerDimension = smallerDimension * 3/4;
+
+        //Encode with a QR Code image
+        QRCodeEncoder qrCodeEncoder = new QRCodeEncoder(qrInputText,
+                null,
+                Contents.Type.TEXT,
+                BarcodeFormat.QR_CODE.toString(),
+                smallerDimension);
+        try {
+            Bitmap bitmap = qrCodeEncoder.encodeAsBitmap();
+            ImageView myImage = (ImageView) myView.findViewById(R.id.imageView1);
+            myImage.setImageBitmap(bitmap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return myView;
     }
 
@@ -63,15 +95,15 @@ public class test extends Fragment implements View.OnClickListener {
             "11","12","13","14","15"};
 
     /** This function add the headers to the table **/
-    public void addHeaders(){
+    /*public void addHeaders(){
 
-        /** Create a TableRow dynamically **/
+        *//** Create a TableRow dynamically **//*
         tr = new TableRow(this.getActivity());
         tr.setLayoutParams(new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.FILL_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT));
 
-        /** Creating a TextView to add to the row **/
+        *//** Creating a TextView to add to the row **//*
         TextView companyTV = new TextView(this.getActivity());
         companyTV.setText("Index");
         companyTV.setTextColor(Color.GRAY);
@@ -80,7 +112,7 @@ public class test extends Fragment implements View.OnClickListener {
         companyTV.setPadding(5, 5, 5, 0);
         tr.addView(companyTV);  // Adding textView to tablerow.
 
-        /** Creating another textview **/
+        *//** Creating another textview **//*
         TextView valueTV = new TextView(this.getActivity());
         valueTV.setText("Event");
         valueTV.setTextColor(Color.GRAY);
@@ -90,7 +122,7 @@ public class test extends Fragment implements View.OnClickListener {
         tr.addView(valueTV); // Adding textView to tablerow.
 
 
-        /** Creating another textview **/
+        *//** Creating another textview **//*
         TextView testTV = new TextView(this.getActivity());
         testTV.setText("Ticket");
         testTV.setTextColor(Color.GRAY);
@@ -111,7 +143,7 @@ public class test extends Fragment implements View.OnClickListener {
                 LayoutParams.FILL_PARENT,
                 LayoutParams.WRAP_CONTENT));
 
-        /** Creating another textview **/
+        *//** Creating another textview **//*
         TextView divider = new TextView(this.getActivity());
         divider.setText("-----------------");
         divider.setTextColor(Color.BLACK);
@@ -145,18 +177,18 @@ public class test extends Fragment implements View.OnClickListener {
                 LayoutParams.WRAP_CONTENT));
     }
 
-    /** This function add the data to the table **/
+    *//** This function add the data to the table **//*
     public void addData(){
 
         for (int i = 0; i < companies.length; i++)
         {
-            /** Create a TableRow dynamically **/
+            *//** Create a TableRow dynamically **//*
             tr = new TableRow(this.getActivity());
             tr.setLayoutParams(new LayoutParams(
                     LayoutParams.FILL_PARENT,
                     LayoutParams.WRAP_CONTENT));
 
-            /** Creating a TextView to add to the row **/
+            *//** Creating a TextView to add to the row **//*
             companyTV = new TextView(this.getActivity());
             companyTV.setText(companies[i]);
             companyTV.setTextColor(Color.RED);
@@ -165,7 +197,7 @@ public class test extends Fragment implements View.OnClickListener {
             companyTV.setPadding(5, 5, 5, 5);
             tr.addView(companyTV);  // Adding textView to tablerow.
 
-            /** Creating another textview **/
+            *//** Creating another textview **//*
             valueTV = new TextView(this.getActivity());
             valueTV.setText(os[i]);
             valueTV.setTextColor(Color.BLUE);
@@ -174,7 +206,7 @@ public class test extends Fragment implements View.OnClickListener {
             valueTV.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             tr.addView(valueTV); // Adding textView to tablerow.
 
-            /** Creating another textview **/
+            *//** Creating another textview **//*
             testTV = new TextView(this.getActivity());
             testTV.setText(test[i]);
             testTV.setTextColor(Color.BLUE);
@@ -188,7 +220,7 @@ public class test extends Fragment implements View.OnClickListener {
                     LayoutParams.FILL_PARENT,
                     LayoutParams.WRAP_CONTENT));
         }
-    }
+    }*/
 
 
 
@@ -196,8 +228,13 @@ public class test extends Fragment implements View.OnClickListener {
 
     TextView qrInput;
 
-
+    @Override
     public void onClick(View v) {
+
+    }
+
+
+    /*public void onClick(View v) {
 
         switch (v.getId()) {
             case R.id.button1:
@@ -237,6 +274,6 @@ public class test extends Fragment implements View.OnClickListener {
             // More buttons go here (if any) ...
 
         }
-    }
+    }*/
 
 }
