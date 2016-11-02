@@ -80,6 +80,12 @@ public class dashboard extends AppCompatActivity
             } else if (extras.getString("key2").equals("ticketSum")) {
                 //from viewTicketList
                 fragmentManager.beginTransaction().replace(R.id.contentFrame, new paymentSummary()).commit();
+                Intent i = new Intent(this, ConfirmationActivity.class);
+                String size = getIntent().getStringExtra("ticketListSize");
+                i.putExtra("size", size);
+                startActivity(i);
+
+
             } else if (extras.getString("key2").equals("passToPayPal")) {
                 //from paymentSummary
                 fragmentManager.beginTransaction().replace(R.id.contentFrame, new PayPalFrag()  ).commit();

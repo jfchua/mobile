@@ -36,7 +36,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     ArrayList<String> numTixList;
     ArrayList<Ticket> ticketList;
-    int num;
+   String size;
 
     private RestTemplate restTemplate = ConnectionInformation.getInstance().getRestTemplate();
     private String url = ConnectionInformation.getInstance().getUrl();
@@ -47,9 +47,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
 
-        Intent intents = getIntent();
-        numTixList = intents.getExtras().getStringArrayList("spinList");
-        ticketList = intents.getExtras().getParcelableArrayList("ticketList");
+
 
         //To View Ticket List
         Button button = (Button) findViewById(R.id.viewTicketList);
@@ -96,13 +94,8 @@ public class ConfirmationActivity extends AppCompatActivity {
              Intent i = new Intent(ConfirmationActivity.this, dashboard.class);
                 i.putExtra("key2","purchasedTix");
                 startActivity(i);
-
-
             }
         });
-
-
-
     }
 
     private void showDetails(JSONObject jsonDetails, String paymentAmount) throws JSONException {
@@ -117,45 +110,35 @@ public class ConfirmationActivity extends AppCompatActivity {
         textViewAmount.setText(paymentAmount+" USD");
 
         if(jsonDetails.getString("state").equals("approved")){
-
             try {
                 new confirmPayment().execute().get();
-
-
-
-
-
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-
-
         }
-
-
     }
 
     public class confirmPayment extends AsyncTask<Void, Void, String> {
 
-
-
-
-
-
         protected String doInBackground(Void... params) {
-            Log.d("TAG", "DO IN BACKGROUND");
+            Log.d("TAG", "DO IN BACKGROUND FOR CONFIRMATION ACTIVITY CONFIRM PAYMENT");
             try {
+                Intent intents = getIntent();
+               // numTixList = intents.getStringArrayListExtra("spinList");
+                //ticketList = intents.getParcelableArrayListExtra("ticketList");
+                String num = intents.getStringExtra("num");
+                System.out.println("NUMBER:  adasdasdadsdad    " + num);
 
+
+                size = intents.getStringExtra("size");
+                System.out.println(" TICKETLIST : "  +size );
                 JSONObject request = new JSONObject();
 
                 JSONArray jarray = new JSONArray();
 
-
-
-                for(int i=0;i<num;i++){
+                for(int i=0;i<Integer.valueOf(size);i++){
 
                     if(Integer.valueOf(numTixList.get(i)) == 0){
                         continue;
@@ -168,16 +151,14 @@ public class ConfirmationActivity extends AppCompatActivity {
                 }
 
 
-
-
-
-
-                JSONObject jsonObjectw= new JSONObject();
+              /*  JSONObject jsonObjectw= new JSONObject();
                 jsonObjectw.put("categoryId", 2);
                 jsonObjectw.put("numTickets", 3);
                 jarray.put(jsonObjectw);
                 request.put("ticketsJSON", jarray);
-                request.put("paymentId", "12345");
+                request.put("paymentId", "12345");*/
+
+
                 HttpEntity<String> request2 = new HttpEntity<String>(request.toString(),ConnectionInformation.getInstance().getHeaders());
                 Log.d("TAGGGGGGGGREQUEST", ConnectionInformation.getInstance().getHeaders().getAccept().toString());
                 String url2 = "https://" + url + "/tixBuyTicket";

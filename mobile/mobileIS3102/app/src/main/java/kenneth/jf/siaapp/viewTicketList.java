@@ -122,14 +122,14 @@ public class viewTicketList extends Fragment {
                 Intent intent = new Intent(getActivity(), dashboard.class);
                 intent.putExtra("key2", "ticketSum");
                 intent.putExtra("price", String.valueOf(sum));
+                intent.putExtra("ticketListSize", TicketList.size());
                 System.err.println("ARRAYLIST: " + TicketList.size());
 
 
                 Intent intent2 = new Intent(getActivity(), ConfirmationActivity.class);
-                intent2.putParcelableArrayListExtra("ticketList", TicketList);
+
                 intent2.putStringArrayListExtra("spinList",spinList);
                 intent2.putExtra("num", TicketList.size());
-
                 startActivity(intent2);
 
 
